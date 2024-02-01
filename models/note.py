@@ -7,7 +7,6 @@ class Note:
         self._lyric = lyric
         self._pitch = pitch
         self._phone = phone
-        self._changed = False
         self._prev = None
         self._next = None
 
@@ -62,3 +61,14 @@ class Note:
     @property
     def next(self):
         return self._next
+    
+    def valid(self, lyric, phone):
+        pass
+    
+    def update(self):
+        # prev + cur + next 3개를 넣고, 한번에 g2p 검사를 시행한다.
+        if not self.valid(self.lyric, self.phone):
+            self.phone = self.phone # G2P
+            self.update(self.prev)
+            self.update(self.next)
+        
