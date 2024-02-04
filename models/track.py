@@ -28,7 +28,6 @@ class Track:
         for _ in range(number):
             if self.pointer.prev is not None:
                 self.pointer = self.pointer.prev
-                
 
     def __rshift__(self, number):
         for _ in range(number):
@@ -41,7 +40,7 @@ class Track:
     def phones(self):
         return [note.phone for note in self.notes]
     
-    def add(self, lyric, phone):
+    def add(self, lyric, *, phone=''):
         note = Note(lyric=lyric, phone=phone)
         if any(self.notes):
             self.notes[-1] >> note
