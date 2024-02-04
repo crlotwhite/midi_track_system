@@ -20,17 +20,15 @@ def test():
 
     # add notes
     data = [
-        ('an', 'a n'), 
-        ('nyeong', 'ny eo ng'), 
-        ('ha', 'h a'), 
-        ('se', 's e'), 
-        ('yo', 'y o')
+        ('안', 'a n'), 
+        ('녕', 'ny eo ng'), 
+        ('하', 'h a'), 
+        ('세', 's e'), 
+        ('요', 'y o')
     ]
     
-    for l, p in data:
-        note = Note()
-        note[l] = p
-        track += note
+    for l, _ in data:
+        track.add(l)
 
     # display
     track.display()
@@ -46,14 +44,15 @@ def test():
     print(track.pointer.phone)
 
     # update lyric
-    track.update(lyric='hi')
+    track.update(lyric='히')
     track.display()
 
     # update lyric with phone
     track >> 1
-    track.update(lyric='he', phone='h e')
+    track.update(lyric='헤', phone='h e')
     track.display()
 
 
 if __name__ == '__main__':
     main()
+    # test()
