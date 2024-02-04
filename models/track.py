@@ -40,12 +40,13 @@ class Track:
     def phones(self):
         return [note.phone for note in self.notes]
     
-    def add(self, lyric, *, phone=''):
-        note = Note(lyric=lyric, phone=phone)
+    def add(self, lyric, phone=''):
         if any(self.notes):
+            note = Note(lyric=lyric, prev=self.notes[-1])
             self.notes[-1] >> note
             self.notes.append(note)
         else:
+            note = Note(lyric=lyric)
             self.notes.append(note)
             self.pointer = note
 
