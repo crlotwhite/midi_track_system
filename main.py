@@ -5,6 +5,16 @@ from models import (
 
 
 def main():
+    print('Create new Track')
+    name = input('input you track\'s name: ')
+    track = Track(name, 'None')
+    _ = track
+    while True:
+        track.display()
+        cmd = input('$ ')
+        eval(cmd)
+
+def test():
     # make track
     track = Track('Track 0', 'Nonamed')
 
