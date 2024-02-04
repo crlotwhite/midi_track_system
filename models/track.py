@@ -28,21 +28,27 @@ class Track:
         for _ in range(number):
             if self.pointer.prev is not None:
                 self.pointer = self.pointer.prev
-            else:
-                raise IndexError
+                
 
     def __rshift__(self, number):
         for _ in range(number):
             if self.pointer.next is not None:
                 self.pointer = self.pointer.next
-            else:
-                raise IndexError
 
     def lyrics(self):
         return [note.lyric for note in self.notes]
 
     def phones(self):
         return [note.phone for note in self.notes]
+    
+    def add(self, lyric, phone):
+        note = Note(lyric=lyric, phone=phone)
+        if any(self.notes):
+            self.notes[-1] >> note
+            self.notes.append(note)
+        else:
+            self.notes.append(note)
+            self.pointer = note
 
     def update(self, /, lyric='', *, phone=''):
         if lyric:
